@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demogradle.gradledemo.custom.exceptions.BingdingExceptionValidate;
 import com.demogradle.gradledemo.custom.exceptions.CustomerException;
 import com.demogradle.gradledemo.customer.service.CustomerService;
 import com.demogradle.gradledemo.customer.service.SecurityUserService;
