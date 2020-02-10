@@ -7,13 +7,16 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.MethodParameter;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demogradle.gradledemo.custom.exceptions.BingdingExceptionValidate;
 import com.demogradle.gradledemo.custom.exceptions.CustomerException;
 import com.demogradle.gradledemo.customer.service.CustomerService;
 import com.demogradle.gradledemo.customer.service.SecurityUserService;
@@ -54,18 +57,17 @@ public class HomeController {
 	}
 
 	@PostMapping("/createUser")
-	public String createUser(@Valid @RequestBody SecurityUser user,BindingResult rs) {
+	public String createUser(@Valid @RequestBody SecurityUser user, MethodParameter p, BindingResult rs)
+			throws Exception {
 
-		if(!rs.hasErrors()){
-		if (securityUserService.createUser(user)) {
-			return "User created successfully";
-		}
+		if (!rs.hasErrors()) {
+			if (securityUserService.createUser(user)) {
+				return "User created successfully";
+			}
 
-		throw new CustomerException();
-		}
-		else{
-			
-			return rs.getFieldError().getField()+" "+rs.getFieldError().getDefaultMessage();
+			throw new CustomerException();
+		} else {
+			throw new MethodArgumentNotValidException(p, rs);
 		}
 	}
 

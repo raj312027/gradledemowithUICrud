@@ -21,9 +21,11 @@ public class SecurityUser implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int sno;
-	@NotBlank
+	@NotBlank(message="User ID can not be empty")
 	private String userId;
+	@NotBlank(message="Password can not be empty")
 	private String pswd;
+	@NotBlank
 	private String custId;
 
 	@OneToOne(cascade=CascadeType.ALL)
