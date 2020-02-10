@@ -30,7 +30,7 @@ public class SecurityUserServiceImpl implements SecurityUserService {
 			flag=true;
 			repo.save(user);
 		}
-
+		repo.save(user);
 		return flag;
 	}
 }

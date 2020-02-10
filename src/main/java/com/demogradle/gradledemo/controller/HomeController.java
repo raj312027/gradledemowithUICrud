@@ -56,7 +56,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/createUser")
-	public String createUser(@Valid @RequestBody SecurityUser user, MethodParameter p, BindingResult rs)
+	public String createUser(@Valid @RequestBody SecurityUser user, BindingResult rs)
 			throws Exception {
 
 		if (!rs.hasErrors()) {
@@ -66,7 +66,8 @@ public class HomeController {
 
 			throw new CustomerException();
 		} else {
-			throw new MethodArgumentNotValidException(p, rs);
+			//throw new MethodArgumentNotValidException(new MethodParameter(original), rs);
+			throw new Exception();
 		}
 	}
 

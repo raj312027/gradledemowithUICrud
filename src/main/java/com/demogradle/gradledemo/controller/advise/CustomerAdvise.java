@@ -1,16 +1,15 @@
 package com.demogradle.gradledemo.controller.advise;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,14 +17,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.demogradle.gradledemo.custom.exceptions.CustomerException;
 
 @ControllerAdvice
-@PropertySource("classpath:application-error_mapping.properties")
 public class CustomerAdvise {
-
-	// @Value("${C102}")
-	// private String error;
 
 	@Autowired
 	private Environment env;
+	@Autowired
+	private LocalValidatorFactoryBean lfb;
 
 	@ExceptionHandler({ RuntimeException.class })
 	private ResponseEntity<String> handleDataAccessException(RuntimeException e) throws Exception {
@@ -47,7 +44,7 @@ public class CustomerAdvise {
 
 	}
 
-	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ExceptionHandler(Exception.class)
 	private ResponseEntity<String> securityUserValidate(MethodArgumentNotValidException e) {
 		String errorMsg = "";
 		List<String> errorList = new ArrayList<>();
