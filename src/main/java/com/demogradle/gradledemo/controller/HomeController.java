@@ -7,15 +7,14 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.MethodParameter;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demogradle.gradledemo.custom.exceptions.CustomValidationEx;
 import com.demogradle.gradledemo.custom.exceptions.CustomerException;
 import com.demogradle.gradledemo.customer.service.CustomerService;
 import com.demogradle.gradledemo.customer.service.SecurityUserService;
@@ -67,7 +66,7 @@ public class HomeController {
 			throw new CustomerException();
 		} else {
 			//throw new MethodArgumentNotValidException(new MethodParameter(original), rs);
-			throw new Exception();
+			throw new CustomValidationEx();
 		}
 	}
 
