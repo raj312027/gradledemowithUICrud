@@ -8,4 +8,8 @@ public class CustomValidationEx extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	
+	/*public CustomValidationEx(BindingResult br){
+		
+	}
+	*/
 }

@@ -2,6 +2,7 @@ package com.demogradle.gradledemo.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -55,7 +56,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/createUser")
-	public String createUser(@Valid @RequestBody SecurityUser user, BindingResult rs)
+	public String createUser(@Valid @RequestBody SecurityUser user,BindingResult rs,HttpSession session) throws Exception
 			 {
 
 		if (!rs.hasErrors()) {
@@ -65,10 +66,9 @@ public class HomeController {
 
 			throw new CustomerException();
 		} else {
-			/*throw new MethodArgumentNotValidException(new MethodParameter(original), rs);
-			throw new CustomValidationEx();*/
-			
-			return "Customer details are not valid";
+			//throw new MethodArgumentNotValidException(MethodParameter, rs);
+			session.setAttribute("bindingRs", rs);
+			throw new CustomValidationEx();
 		}
 	}
 
