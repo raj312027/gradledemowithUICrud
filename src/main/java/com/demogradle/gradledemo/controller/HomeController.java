@@ -56,7 +56,7 @@ public class HomeController {
 
 	@PostMapping("/createUser")
 	public String createUser(@Valid @RequestBody SecurityUser user, BindingResult rs)
-			throws Exception {
+			 {
 
 		if (!rs.hasErrors()) {
 			if (securityUserService.createUser(user)) {
@@ -65,8 +65,10 @@ public class HomeController {
 
 			throw new CustomerException();
 		} else {
-			//throw new MethodArgumentNotValidException(new MethodParameter(original), rs);
-			throw new CustomValidationEx();
+			/*throw new MethodArgumentNotValidException(new MethodParameter(original), rs);
+			throw new CustomValidationEx();*/
+			
+			return "Customer details are not valid";
 		}
 	}
 
