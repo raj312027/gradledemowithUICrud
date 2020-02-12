@@ -12,44 +12,53 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class SecurityUser implements Serializable{
-	
+public class SecurityUser implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int sno;
-	@NotBlank(message="{userId.notempty}")
+	@NotBlank(message = "{userId.notempty}")
 	private String userId;
-	@NotBlank(message="{pswd.notempty}")
+	@NotBlank(message = "{pswd.notempty}")
 	private String pswd;
-	@NotBlank(message="{custId.notempty}")
-	private String custId;
+	@NotBlank(message="{cust.notempty}")
+	private String cust;
 
-/*	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(referencedColumnName="Customer_ID",name="Customer_ID")
-	private Customer cust;*/
-    
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getPswd() {
 		return pswd;
 	}
+
 	public void setPswd(String pswd) {
 		this.pswd = pswd;
 	}
-	public String getCustId() {
-		return custId;
+
+
+	public int getSno() {
+		return sno;
 	}
-	public void setCustId(String custId) {
-		this.custId = custId;
+
+	public void setSno(int sno) {
+		this.sno = sno;
 	}
-	
+
+	public String getCust() {
+		return cust;
+	}
+
+	public void setCust(String cust) {
+		this.cust = cust;
+	}
 
 }

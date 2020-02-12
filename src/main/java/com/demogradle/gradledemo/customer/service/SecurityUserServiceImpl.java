@@ -21,12 +21,12 @@ public class SecurityUserServiceImpl implements SecurityUserService {
 	@Override
 	public boolean createUser(SecurityUser user) {
 		List<String> customerIDs = new ArrayList<>();
-		boolean flag=false;
+		boolean flag=true;
 		cust.findAll().forEach(x -> {
 			customerIDs.add(x.getCustomerId());
 		});
 
-		if (!customerIDs.isEmpty() && customerIDs.contains(user.getCustId())) {
+		if (!customerIDs.isEmpty() && customerIDs.contains(user.getCust())) {
 			flag=true;
 			repo.save(user);
 		}

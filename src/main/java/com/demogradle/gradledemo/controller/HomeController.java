@@ -5,8 +5,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +17,20 @@ import com.demogradle.gradledemo.custom.exceptions.CustomValidationEx;
 import com.demogradle.gradledemo.custom.exceptions.CustomerException;
 import com.demogradle.gradledemo.customer.service.CustomerService;
 import com.demogradle.gradledemo.customer.service.SecurityUserService;
+import com.demogradle.gradledemo.customer.service.TransactionUserService;
 import com.demogradle.gradledemo.model.Customer;
+import com.demogradle.gradledemo.model.EndUser;
 import com.demogradle.gradledemo.model.SecurityUser;
+import com.demogradle.gradledemo.model.TransactionEntity;
 
 @RestController
 public class HomeController {
 
-	private Log log = LogFactory.getLog(HomeController.class);
 	@Autowired
 	private CustomerService custService;
+
+	@Autowired
+	private TransactionUserService txUser;
 
 	@Autowired
 	private SecurityUserService securityUserService;
@@ -56,8 +59,8 @@ public class HomeController {
 	}
 
 	@PostMapping("/createUser")
-	public String createUser(@Valid @RequestBody SecurityUser user,BindingResult rs,HttpSession session) throws Exception
-			 {
+	public String createUser(@Valid @RequestBody SecurityUser user, BindingResult rs, HttpSession session)
+			throws Exception {
 
 		if (!rs.hasErrors()) {
 			if (securityUserService.createUser(user)) {
@@ -66,10 +69,20 @@ public class HomeController {
 
 			throw new CustomerException();
 		} else {
-			//throw new MethodArgumentNotValidException(MethodParameter, rs);
 			session.setAttribute("bindingRs", rs);
 			throw new CustomValidationEx();
 		}
 	}
 
+/*	@PostMapping("/createEnduser")
+	public String createEnuser(@RequestBody EndUser user) {
+		txUser.createEndUser(user);
+		return "End user created";
+	}*/
+
+	@PostMapping("/maketransaction")
+	public String makeTransaction(@RequestBody TransactionEntity txn) {
+		txUser.makeTransaction(txn);
+		return "Transaction successfully";
+	}
 }

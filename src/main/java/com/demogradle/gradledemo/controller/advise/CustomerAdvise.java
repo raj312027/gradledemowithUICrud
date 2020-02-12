@@ -30,7 +30,6 @@ public class CustomerAdvise {
 
 		return handleOracleEx(HttpStatus.NOT_FOUND, e);
 	}
-
 	private ResponseEntity<String> handleOracleEx(HttpStatus status, RuntimeException e) {
 		if (e instanceof DataIntegrityViolationException) {
 			return ResponseEntity.status(status).body("Customer already exists");
@@ -60,5 +59,8 @@ public class CustomerAdvise {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMsg);
 
 	}
+	
+	
+
 
 }

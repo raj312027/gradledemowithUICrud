@@ -1,7 +1,13 @@
 package com.demogradle.gradledemo;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
@@ -12,6 +18,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @PropertySource(value = { "classpath:application-error_mapping.properties" })
 public class GradledemoApplication {
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(GradledemoApplication.class, args);
 	}
@@ -31,5 +38,9 @@ public class GradledemoApplication {
 		bean.setValidationMessageSource(getMsgSource());
 		return bean;
 	}
+
+	
+	
+
 
 }
