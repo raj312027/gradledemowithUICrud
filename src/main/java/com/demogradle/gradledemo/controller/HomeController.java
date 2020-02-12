@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.demogradle.gradledemo.custom.exceptions.CustomValidationEx;
 import com.demogradle.gradledemo.custom.exceptions.CustomerException;
@@ -35,11 +36,6 @@ public class HomeController {
 	@Autowired
 	private SecurityUserService securityUserService;
 
-	@GetMapping("/")
-	public String welcomeMsg() {
-
-		return "Welcome to Spring boot app with gradle";
-	}
 
 	@PostMapping("/saveCustomer")
 	public Customer createCustomer(@RequestBody Customer cust) throws Exception {
@@ -74,11 +70,10 @@ public class HomeController {
 		}
 	}
 
-/*	@PostMapping("/createEnduser")
-	public String createEnuser(@RequestBody EndUser user) {
-		txUser.createEndUser(user);
-		return "End user created";
-	}*/
+	/*
+	 * @PostMapping("/createEnduser") public String createEnuser(@RequestBody
+	 * EndUser user) { txUser.createEndUser(user); return "End user created"; }
+	 */
 
 	@PostMapping("/maketransaction")
 	public String makeTransaction(@RequestBody TransactionEntity txn) {
