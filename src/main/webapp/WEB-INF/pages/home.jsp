@@ -13,8 +13,8 @@
 	<s:form action="/createUserInfo" modelAttribute="userinfo">
 		<table>
 			<tr>
-				<td><s:label path="userId">User ID</s:label></td>
-				<td><s:input path="userId" /></td>
+				<td><s:label path="userid">User ID</s:label></td>
+				<td><s:input path="userid" /></td><td><s:errors path="userid"/></td>
 			</tr>
 			<tr>
 				<td><s:label path="name">User Name</s:label></td>

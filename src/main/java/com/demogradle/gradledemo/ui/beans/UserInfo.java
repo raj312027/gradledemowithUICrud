@@ -1,17 +1,15 @@
 package com.demogradle.gradledemo.ui.beans;
 
+import javax.validation.constraints.NotBlank;
+
 public class UserInfo {
 
-	private String userId;
+	@NotBlank(message="{userid.notblank}")
+	private String userid;
 	private String name;
 	private String email;
 	private String address;
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -32,7 +30,13 @@ public class UserInfo {
 	}
 	@Override
 	public String toString() {
-		return "UserInfo [userId=" + userId + ", name=" + name + ", email=" + email + ", address=" + address + "]";
+		return "UserInfo [userId=" + userid + ", name=" + name + ", email=" + email + ", address=" + address + "]";
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	
 	
