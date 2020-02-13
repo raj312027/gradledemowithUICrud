@@ -27,14 +27,14 @@ public class UIController {
 
 	@PostMapping("/createUserInfo")
 	public ModelAndView createUser(@Valid @ModelAttribute("userinfo") UserInfo user,BindingResult br, Model model) {
-		System.out.println(user);
-		if(br.hasErrors()){
+	/*	if(br.hasErrors()){
 			model.addAttribute("msg", env.getProperty("msg_er")); 
 		}
 		else{
 			model.addAttribute("msg", env.getProperty("msg001"));
-		}
-		
+		}*/
+		if(!br.hasErrors())
+			model.addAttribute("msg", env.getProperty("msg_er")); 
 		return new ModelAndView("home", "userinfo", user);
 	}
 
