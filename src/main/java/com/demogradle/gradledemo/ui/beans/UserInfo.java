@@ -1,5 +1,7 @@
 package com.demogradle.gradledemo.ui.beans;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class UserInfo {
@@ -12,6 +14,16 @@ public class UserInfo {
 	private String email;
 	@NotBlank(message = "{address.notblank}")
 	private String address;
+	@NotBlank(message="{houseNo.notblank}")
+	private String houseNO;
+
+	@NotBlank(message="{street.notblank}")
+	private String street;
+	@NotBlank(message="{area.notblank}")
+	private String area;
+	private String city;
+	private String state;
+	private String country;
 
 	public String getName() {
 		return name;
@@ -48,6 +60,54 @@ public class UserInfo {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+
+	public String getHouseNO() {
+		return houseNO;
+	}
+
+	public void setHouseNO(String houseNO) {
+		this.houseNO = houseNO;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 }
