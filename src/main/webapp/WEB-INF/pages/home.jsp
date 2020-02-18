@@ -28,7 +28,7 @@
 					</tr>
 					<tr>
 						<%-- 						<td><s:label path="name">User Name</s:label></td> --%>
-						<td><s:input path="name" placeholder="User Name" /></td>
+						<td><s:input path="name" placeholder="Name" /></td>
 						<td><s:errors cssClass="err" path="name" /></td>
 					</tr>
 
@@ -45,6 +45,12 @@
 
 						<td><s:input path="houseNO" placeholder="House No" /></td>
 						<td><s:errors cssClass="err" path="houseNO" /></td>
+					</tr>
+					<tr>
+					 <td>
+					   <s:password path="password" placeholder="Password" cssClass="pscls" />
+					 </td>
+					 <td><s:errors path="password" cssClass="err"/></td>
 					</tr>
 					<tr>
 						<td><s:input path="street" placeholder="Street" /></td>

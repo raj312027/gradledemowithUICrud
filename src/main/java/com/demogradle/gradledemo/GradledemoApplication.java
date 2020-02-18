@@ -9,7 +9,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @SpringBootApplication
-@PropertySource(value = { "classpath:application-error_mapping.properties","classpath:countrymapping.properties"})
+@PropertySource(value = { "classpath:application-error_mapping.properties","classpath:country_state_mapping.properties"})
 public class GradledemoApplication {
 
 	

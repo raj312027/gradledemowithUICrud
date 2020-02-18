@@ -1,13 +1,14 @@
 package com.demogradle.gradledemo.ui.beans;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class UserInfo {
 
 	@NotBlank(message = "{userid.notblank}")
 	private String userid;
+	
+	@NotBlank(message="{pswd.notblank}")
+	private String password;
 	@NotBlank(message = "{name.notblank}")
 	private String name;
 	@NotBlank(message = "{email.notblank}")
@@ -108,6 +109,14 @@ public class UserInfo {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

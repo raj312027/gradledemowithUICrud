@@ -80,7 +80,13 @@ input[type="text"]:focus {
 	color: #16a085;
 	transition: 0.2s ease;
 }
-
+.pscls{
+	border-bottom: 2px solid #16a085;
+	color: #16a085;
+	transition: 0.2s ease;
+	border-top: gray;
+	width: 300px;
+}
 input[type="submit"] {
 	margin-top: 28px;
 	width: 120px;
