@@ -13,8 +13,8 @@ public class UserInfo {
 	private String name;
 	@NotBlank(message = "{email.notblank}")
 	private String email;
-	@NotBlank(message = "{address.notblank}")
-	private String address;
+	/*@NotBlank(message = "{address.notblank}")
+	private String address;*/
 	@NotBlank(message="{houseNo.notblank}")
 	private String houseNO;
 
@@ -42,17 +42,17 @@ public class UserInfo {
 		this.email = email;
 	}
 
-	public String getAddress() {
+/*	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
+	}*/
 
 	@Override
 	public String toString() {
-		return "UserInfo [userId=" + userid + ", name=" + name + ", email=" + email + ", address=" + address + "]";
+		return "UserInfo [userId=" + userid + ", name=" + name + ", email=" + email;
 	}
 
 	public String getUserid() {

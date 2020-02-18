@@ -1,9 +1,7 @@
 package com.demogradle.gradledemo.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demogradle.gradledemo.customer.service.ConstantValue;
+import com.demogradle.gradledemo.customer.service.SecurityUserService;
 import com.demogradle.gradledemo.model.SecurityUser;
 import com.demogradle.gradledemo.ui.beans.UserInfo;
 
@@ -29,6 +28,8 @@ public class UIController {
 	@Autowired
 	private Environment env;
 
+	@Autowired
+	private SecurityUserService secService;
 	@Autowired
 	private ConstantValue nsql;
 
@@ -41,6 +42,7 @@ public class UIController {
 	@ModelAttribute
 	public void setCountry(Model model) {
 		List<String> countryList = new ArrayList<>();
+		countryList.add("Select country");
 		countryList.add("India");
 		countryList.add("NZ");
 		countryList.add("South Africa");
@@ -50,11 +52,21 @@ public class UIController {
 
 	@PostMapping("/createUserInfo")
 	public ModelAndView createUser(@Valid @ModelAttribute("userinfo") UserInfo user, BindingResult br, Model model) {
-		if (!br.hasErrors())
+		if (br.hasErrors())
 			model.addAttribute("msg", env.getProperty("msg_er"));
-		
-		SecurityUser su=new SecurityUser();
+
+		SecurityUser su = new SecurityUser();
+		su.setUserId(user.getUserid());
+		su.setCust(user.getUserid());
+		su.setPswd(user.getPassword());
+		/*
+		 * if(secService.createUser(su)){ model.addAttribute("msg",
+		 * env.getProperty("msg001")); }
+		 */
+		model.addAttribute("stateList", nsql.getStateList(env.getProperty(user.getCountry().toLowerCase())));
+		model.addAttribute("cityList", nsql.getCityList(env.getProperty(user.getState().toLowerCase())));
 		return new ModelAndView("home", "userinfo", user);
+
 	}
 
 	@GetMapping("/getList/{sel}")
