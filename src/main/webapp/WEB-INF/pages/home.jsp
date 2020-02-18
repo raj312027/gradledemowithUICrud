@@ -12,32 +12,7 @@
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/homepage_css.css" />
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				$('#cntryList').change(
-						function() {
-							var sel=$(this).val();
-							$.ajax({
-								type : 'GET',
-								url : "/getList/"+sel,
-								success : function(data) {
-									$.each(data, function(index, item) {
-										$('#stateList').append(
-												$('<option></option>')
-														.val(item).html(item));
-									});
-
-								},
-								error : function() {
-									alert("error in loading state list");
-								}
-							});
-						});
-
-			});
-</script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/homepagescript.js" ></script>
 </head>
 <body>
 	<div id="login-box">
@@ -86,8 +61,7 @@
 						<td><s:select path="country" class="sel" id="cntryList">
 								<s:option value="Select Country" />
 								<s:options items="${countryList}" />
-							</s:select>
-						<input type="hidden" name="selectedCountry" id="hideCntry"/>
+							</s:select> <input type="hidden" name="selectedCountry" id="hideCntry" />
 					</tr>
 					<tr>
 						<td><s:select path="state" class="sel" id="stateList">
@@ -97,7 +71,7 @@
 					</tr>
 
 					<tr>
-						<td><s:select path="city" class="sel">
+						<td><s:select path="city" class="sel" id="cityList">
 								<s:option value="Select City" />
 								<%-- 	<s:options items="${cityList}" /> --%>
 							</s:select></td>
