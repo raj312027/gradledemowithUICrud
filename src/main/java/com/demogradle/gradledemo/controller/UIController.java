@@ -59,10 +59,10 @@ public class UIController {
 		su.setUserId(user.getUserid());
 		su.setCust(user.getUserid());
 		su.setPswd(user.getPassword());
-		/*
-		 * if(secService.createUser(su)){ model.addAttribute("msg",
-		 * env.getProperty("msg001")); }
-		 */
+
+		if (secService.createUser(su)) {
+			model.addAttribute("msg", env.getProperty("msg001"));
+		}
 		model.addAttribute("stateList", nsql.getStateList(env.getProperty(user.getCountry().toLowerCase())));
 		model.addAttribute("cityList", nsql.getCityList(env.getProperty(user.getState().toLowerCase())));
 		return new ModelAndView("home", "userinfo", user);
