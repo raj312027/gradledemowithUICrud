@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demogradle.gradledemo.GradledemoApplication;
 import com.demogradle.gradledemo.customer.service.ConstantValue;
 import com.demogradle.gradledemo.customer.service.SecurityUserService;
 import com.demogradle.gradledemo.model.SecurityUser;
@@ -25,6 +27,7 @@ import com.demogradle.gradledemo.ui.beans.UserInfo;
 @Controller
 public class UIController {
 
+	private static Logger log=Logger.getLogger(GradledemoApplication.class);
 	@Autowired
 	private Environment env;
 
@@ -35,7 +38,7 @@ public class UIController {
 
 	@GetMapping("/")
 	public ModelAndView welcomeMsg(Model model) {
-
+		log.info("-----------------------------------Home page loaded");
 		return new ModelAndView("home", "userinfo", new UserInfo());
 	}
 

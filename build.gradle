@@ -26,6 +26,9 @@ dependencies {
 	compile group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.30'
 	compile group: 'jstl', name: 'jstl', version: '1.2'
 	compile files('lib/ojdbc8.jar')
+	// https://mvnrepository.com/artifact/log4j/log4j
+	compile group: 'log4j', name: 'log4j', version: '1.2.17'
+	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

@@ -1,5 +1,6 @@
 package com.demogradle.gradledemo;
 
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
@@ -12,7 +13,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @PropertySource(value = { "classpath:application-error_mapping.properties","classpath:country_state_mapping.properties"})
 public class GradledemoApplication {
 
-	
+	private static Logger log=Logger.getLogger(GradledemoApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(GradledemoApplication.class, args);
 	}
