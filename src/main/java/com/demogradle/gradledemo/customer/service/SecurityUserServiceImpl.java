@@ -18,6 +18,7 @@ public class SecurityUserServiceImpl implements SecurityUserService {
 	@Autowired
 	private CustomerRepository cust;
 
+
 	@Override
 	public boolean createUser(SecurityUser user) {
 		List<String> customerIDs = new ArrayList<>();

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demogradle.gradledemo.GradledemoApplication;
+import com.demogradle.gradledemo.customer.repo.PicRepo;
 import com.demogradle.gradledemo.customer.service.ConstantValue;
 import com.demogradle.gradledemo.customer.service.SecurityUserService;
 import com.demogradle.gradledemo.model.SecurityUser;
@@ -35,6 +36,7 @@ public class UIController {
 	private SecurityUserService secService;
 	@Autowired
 	private ConstantValue nsql;
+
 
 	@GetMapping("/")
 	public ModelAndView welcomeMsg(Model model) {
@@ -95,5 +97,8 @@ public class UIController {
 		cityList = nsql.getCityList(env.getProperty(selectedState.toLowerCase()));
 		return ResponseEntity.ok().body(cityList);
 	}
+	
+	
+	
 
 }

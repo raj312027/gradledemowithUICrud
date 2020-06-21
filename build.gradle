@@ -1,20 +1,30 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+	id 'war'
 }
 
+
+    apply plugin: 'java'
+ 	apply plugin: 'war'
+ 	apply plugin: 'jacoco'
+ 	
 group = 'com.demogradle'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
-
 configurations {
 	developmentOnly
 	runtimeClasspath {
 		extendsFrom developmentOnly
 	}
 }
+def jarName = project.name+'-0.0.1.jar'
+def buildDir = project.buildDir
+def oracleDir= ("D:\\eclipseuserspace\\common_lib")
 
+println  "Jar Name= " +jarName
+println  "buildDir = "+buildDir
+println "oracle Dir = "+oracleDir
 repositories {
 	mavenCentral()
 }
@@ -25,15 +35,14 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compile group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.30'
 	compile group: 'jstl', name: 'jstl', version: '1.2'
-	compile files('lib/ojdbc8.jar')
-	// https://mvnrepository.com/artifact/log4j/log4j
+	compile fileTree(oracleDir){ include  'ojdbc8.jar'}
+compile group: 'com.hazelcast', name: 'hazelcast', version: '3.4'
+compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '2.2.2.RELEASE'
+compile group: 'com.hazelcast', name: 'hazelcast-spring', version: '3.12.6'
 	compile group: 'log4j', name: 'log4j', version: '1.2.17'
-	
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.6.RELEASE'
+
+
 }
 
-test {
-	useJUnitPlatform()
-}
+
